@@ -13,4 +13,8 @@ public class Car extends Vehicle {
         super(CAR_TYPE, 25000);
         this.doorsCount = doorsCount;
     }
+
+    public Car() {
+
+    }
 }

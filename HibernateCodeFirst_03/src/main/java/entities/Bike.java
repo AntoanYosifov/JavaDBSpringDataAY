@@ -14,4 +14,8 @@ public class Bike extends Vehicle{
         super(BIKE_TYPE, 250);
         this.gearsCount = gearsCount;
     }
+
+    public Bike() {
+
+    }
 }

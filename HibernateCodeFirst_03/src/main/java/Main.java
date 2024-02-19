@@ -10,8 +10,8 @@ public class Main {
 
         entityManager.getTransaction().begin();
 
-        Bike bike = new Bike();
-        Car car = new Car();
+        Bike bike = new Bike(21);
+        Car car = new Car(4);
 
         entityManager.persist(bike);
         entityManager.persist(car);
