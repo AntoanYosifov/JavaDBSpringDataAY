@@ -11,10 +11,13 @@ public abstract class Vehicle {
     @Basic
     private String type;
 
+    private double price;
+
     public Vehicle(){}
 
-    public Vehicle(String type) {
+    public Vehicle(String type, double price) {
         this.type = type;
+        this.price = price;
     }
 
     public int getId() {

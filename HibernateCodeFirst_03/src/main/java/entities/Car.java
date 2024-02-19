@@ -7,8 +7,10 @@ import javax.persistence.Table;
 @Table(name = "cars")
 public class Car extends Vehicle {
     private static final String CAR_TYPE = "Car";
+    private int doorsCount;
 
-    public Car() {
-        super(CAR_TYPE);
+    public Car(int doorsCount) {
+        super(CAR_TYPE, 25000);
+        this.doorsCount = doorsCount;
     }
 }
