@@ -9,6 +9,17 @@ public class BasicLabel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String color;
+    @OneToOne(mappedBy = "label", targetEntity = BasicShampoo.class)
+    private BasicShampoo shampoo;
+
+    public BasicShampoo getShampoo() {
+        return shampoo;
+    }
+
+    public void setShampoo(BasicShampoo shampoo) {
+        this.shampoo = shampoo;
+    }
+
     public BasicLabel(){}
 
     public BasicLabel(String color) {

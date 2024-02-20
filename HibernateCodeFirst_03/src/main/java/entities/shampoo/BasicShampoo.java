@@ -12,11 +12,23 @@ public class BasicShampoo {
     @OneToOne(optional = false)
     @JoinColumn(name = "label_id", referencedColumnName = "id")
     private BasicLabel label;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "bacth_id", referencedColumnName = "id")
+    private ProductionBatch batch;
     public BasicShampoo(){}
 
-    public BasicShampoo(String name, BasicLabel label) {
+    public BasicShampoo(String name, BasicLabel label, ProductionBatch batch) {
         this.name = name;
         this.label = label;
+        this.batch = batch;
+    }
+
+    public ProductionBatch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(ProductionBatch batch) {
+        this.batch = batch;
     }
 
     public int getId() {
