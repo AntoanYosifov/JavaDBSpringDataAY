@@ -1,6 +1,8 @@
-import entities.Bike;
-import entities.Car;
-import entities.Truck;
+import entities.shampoo.BasicLabel;
+import entities.shampoo.BasicShampoo;
+import entities.vehicle.Bike;
+import entities.vehicle.Car;
+import entities.vehicle.Truck;
 import utils.Utils;
 
 import javax.persistence.EntityManager;
@@ -11,13 +13,11 @@ public class Main {
 
         entityManager.getTransaction().begin();
 
-        Bike bike = new Bike(21);
-        Car car = new Car(4);
-        Truck truck = new Truck(25000, 40000);
+        BasicLabel label = new BasicLabel("red");
+        BasicShampoo shampoo = new BasicShampoo("whatever", label);
 
-        entityManager.persist(bike);
-        entityManager.persist(car);
-        entityManager.persist(truck);
+        entityManager.persist(label);
+        entityManager.persist(shampoo);
 
         entityManager.getTransaction().commit();
         entityManager.close();
