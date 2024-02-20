@@ -2,6 +2,9 @@ package entities.shampoo;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "batches")
 public class ProductionBatch {
@@ -9,7 +12,15 @@ public class ProductionBatch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private LocalDate createdAt;
+    @OneToMany(mappedBy = "batch", targetEntity = BasicShampoo.class,
+    fetch = FetchType.LAZY)
+    private Set<BasicShampoo> shampoos;
     public ProductionBatch(){}
+
+    public ProductionBatch(LocalDate createdAt) {
+        this.createdAt = createdAt;
+
+    }
 
     public int getId() {
         return id;
@@ -27,7 +38,11 @@ public class ProductionBatch {
         this.createdAt = createdAt;
     }
 
-    public ProductionBatch(LocalDate createdAt) {
-        this.createdAt = createdAt;
+    public Set<BasicShampoo> getShampoos() {
+        return shampoos;
+    }
+
+    public void setShampoos(Set<BasicShampoo> shampoos) {
+        this.shampoos = shampoos;
     }
 }

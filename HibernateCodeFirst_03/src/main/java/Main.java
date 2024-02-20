@@ -8,6 +8,7 @@ import utils.Utils;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
+import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,6 +23,12 @@ public class Main {
         entityManager.persist(batch);
         entityManager.persist(label);
         entityManager.persist(shampoo);
+
+
+        ProductionBatch productionBatch = entityManager.find(ProductionBatch.class, 1);
+        Set<BasicShampoo> shampoos = productionBatch.getShampoos();
+
+        shampoos.forEach(System.out::println);
 
         entityManager.getTransaction().commit();
         entityManager.close();
