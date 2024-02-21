@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cars")
 @DiscriminatorValue("car")
 public class Car extends Vehicle {
     private static final String CAR_TYPE = "Car";

@@ -1,3 +1,4 @@
+import entities.shampoo.BasicIngredient;
 import entities.shampoo.BasicLabel;
 import entities.shampoo.BasicShampoo;
 import entities.shampoo.ProductionBatch;
@@ -20,15 +21,19 @@ public class Main {
         BasicLabel label = new BasicLabel("red");
         BasicShampoo shampoo = new BasicShampoo("whatever", label, batch);
 
+        BasicIngredient ingredient = new BasicIngredient(100, "B12");
+        BasicIngredient ingredient2 = new BasicIngredient(50, "B11");
+
+        shampoo.addIngredient(ingredient);
+        shampoo.addIngredient(ingredient2);
+
+        entityManager.persist(ingredient);
+        entityManager.persist(ingredient2);
+
         entityManager.persist(batch);
         entityManager.persist(label);
         entityManager.persist(shampoo);
 
-
-        ProductionBatch productionBatch = entityManager.find(ProductionBatch.class, 1);
-        Set<BasicShampoo> shampoos = productionBatch.getShampoos();
-
-        shampoos.forEach(System.out::println);
 
         entityManager.getTransaction().commit();
         entityManager.close();

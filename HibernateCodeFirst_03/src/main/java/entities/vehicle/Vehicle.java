@@ -3,7 +3,7 @@ package entities.vehicle;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "vehicles")
+@Table(name = "vehichles")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
 public abstract class Vehicle {

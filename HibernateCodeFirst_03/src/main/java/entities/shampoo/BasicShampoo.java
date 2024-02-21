@@ -1,6 +1,9 @@
 package entities.shampoo;
 
 import javax.persistence.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "shampoos")
@@ -15,12 +18,19 @@ public class BasicShampoo {
     @ManyToOne(optional = false)
     @JoinColumn(name = "bacth_id", referencedColumnName = "id")
     private ProductionBatch batch;
+    @ManyToMany
+    @JoinTable(name = "shampoos_ingredients",
+    joinColumns = @JoinColumn(name = "shampoo_id", referencedColumnName = "id"),
+    inverseJoinColumns = @JoinColumn(name = "ingredient_id", referencedColumnName = "id"))
+    Set<BasicIngredient> ingredients;
     public BasicShampoo(){}
 
     public BasicShampoo(String name, BasicLabel label, ProductionBatch batch) {
         this.name = name;
         this.label = label;
         this.batch = batch;
+
+        this.ingredients = new HashSet<>();
     }
 
     public ProductionBatch getBatch() {
@@ -53,5 +63,11 @@ public class BasicShampoo {
 
     public void setLabel(BasicLabel label) {
         this.label = label;
+    }
+    public Set<BasicIngredient> getIngredients(){
+        return Collections.unmodifiableSet(this.ingredients);
+    }
+    public void addIngredient(BasicIngredient ingredient){
+        this.ingredients.add(ingredient);
     }
 }
