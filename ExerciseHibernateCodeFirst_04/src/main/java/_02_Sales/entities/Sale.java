@@ -1,4 +1,4 @@
-package _02_Sales.entities;
+package _02_sales.entities;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

@@ -1,7 +1,8 @@
-package _02_Sales.entities;
+package _02_sales.entities;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "_01_products")
@@ -9,9 +10,23 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private int quantity;
+    @Column(nullable = false)
     private BigDecimal price;
+
+    public Set<Sale> getSales() {
+        return sales;
+    }
+
+    public void setSales(Set<Sale> sales) {
+        this.sales = sales;
+    }
+
+    @OneToMany(targetEntity = Sale.class, mappedBy = "product")
+    private Set<Sale> sales;
     public Product(){}
 
     public Product(String name, int quantity, BigDecimal price) {

@@ -1,6 +1,7 @@
-package _02_Sales.entities;
+package _02_sales.entities;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "_03_store_location")
@@ -10,6 +11,8 @@ public class StoreLocation {
     private int id;
     @Column(name = "location_name", nullable = false)
     private String locationName;
+    @OneToMany(targetEntity = Sale.class, mappedBy = "storeLocation")
+    Set<Sale> sales;
     public StoreLocation(){}
 
     public StoreLocation(String locationName) {
