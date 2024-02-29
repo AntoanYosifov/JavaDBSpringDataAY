@@ -2,6 +2,7 @@ package com.example.springdataexercise.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Collections;
 import java.util.Set;
 
 @Entity(name = "authors")
@@ -11,6 +12,15 @@ public class Author {
     private int id;
     @Column(name = "first_name")
     private String firstName;
+
+    public Set<Book> getBooks() {
+        return Collections.unmodifiableSet(this.books);
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
+
     @Column(name = "last_name", nullable = false)
     private String lastName;
     @OneToMany(targetEntity = Book.class, mappedBy = "author")
