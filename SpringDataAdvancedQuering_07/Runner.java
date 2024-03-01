@@ -7,6 +7,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.Scanner;
+import java.util.Set;
 
 @Component
 public class Runner implements CommandLineRunner {
@@ -19,14 +20,20 @@ public class Runner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Scanner scanner = new Scanner(System.in);
+       Scanner scanner = new Scanner(System.in);
+//
+//        String sizeName = scanner.nextLine();
+//        Size size = Size.valueOf(sizeName);
+//
+//        this.shampooRepository.findBySizeOrderById(size)
+//                .forEach(System.out::println);
+        String first = scanner.nextLine();
+        String second = scanner.nextLine();
 
-        String sizeName = scanner.nextLine();
-        Size size = Size.valueOf(sizeName);
+        Set<String> names = Set.of(first, second);
 
-        this.shampooRepository.findBySizeOrderById(size)
+        this.shampooRepository.findByIngredientsNames(names)
                 .forEach(System.out::println);
-
 
     }
 }
