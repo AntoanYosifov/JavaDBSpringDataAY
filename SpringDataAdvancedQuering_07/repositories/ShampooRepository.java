@@ -11,4 +11,6 @@ import java.util.List;
 public interface ShampooRepository extends JpaRepository<Shampoo, Long> {
     List<Shampoo> findAllByBrand(String brand);
     List<Shampoo> findAllByBrandAndSize(String brand, Size size);
+
+    List<Shampoo> findBySizeOrderById(Size size);
 }
