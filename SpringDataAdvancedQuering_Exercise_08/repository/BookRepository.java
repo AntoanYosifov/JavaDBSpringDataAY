@@ -2,6 +2,7 @@ package com.example.springintro.repository;
 
 import com.example.springintro.model.entity.AgeRestriction;
 import com.example.springintro.model.entity.Book;
+import com.example.springintro.model.entity.EditionType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -20,4 +21,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b.title FROM Book b " +
             "WHERE b.ageRestriction = :ageRestriction")
     List<String> findAllTitlesByAgeRestriction(AgeRestriction ageRestriction);
+    List<Book> findByEditionTypeAndCopiesLessThan(EditionType type, int numCopies);
+
 }

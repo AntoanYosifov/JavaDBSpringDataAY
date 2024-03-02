@@ -1,6 +1,7 @@
 package com.example.springintro;
 
 import com.example.springintro.model.entity.Book;
+import com.example.springintro.model.entity.EditionType;
 import com.example.springintro.service.AuthorService;
 import com.example.springintro.service.BookService;
 import com.example.springintro.service.CategoryService;
@@ -26,7 +27,6 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        String ageRestriction = scanner.nextLine();
 
        // seedData();
 
@@ -34,10 +34,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
 //        printAllAuthorsNamesWithBooksWithReleaseDateBeforeYear(1990);
      //   printAllAuthorsAndNumberOfTheirBooks();
         //printALlBooksByAuthorNameOrderByReleaseDate("George", "Powell");
-        _01_printAllBookTitlesByAgeRestriction(ageRestriction);
+       // _01_printAllBookTitlesByAgeRestriction(ageRestriction);
+        _02_printTheTitlesOfGoldEditionBooks();
 
 
 
+    }
+    private void _02_printTheTitlesOfGoldEditionBooks(){
+        this.bookService.findAllTitlesByEditionTypeAndCopies(EditionType.GOLD, 5000)
+                .forEach(System.out::println);
     }
 
     private void _01_printAllBookTitlesByAgeRestriction(String restriction){
