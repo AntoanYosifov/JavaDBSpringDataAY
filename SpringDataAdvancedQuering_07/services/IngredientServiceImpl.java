@@ -19,4 +19,9 @@ public class IngredientServiceImpl implements IngredientService {
     public List<Ingredient> selectNameStartsWith(String startsWith) {
         return this.ingredientRepository.findByNameStartingWith(startsWith);
     }
+
+    @Override
+    public List<Ingredient> selectByNamesIn(List<String> names) {
+        return this.ingredientRepository.findByNameIsIn(names);
+    }
 }

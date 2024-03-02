@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,12 +29,17 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        String ingredientStartsWith =scanner.nextLine();
+        List<String> ingredientNamesList = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            String ingredientName = scanner.nextLine();
+            ingredientNamesList.add(ingredientName);
+        }
+        _05_selectIngredientsByNamesInAList(ingredientNamesList);
 
         //_01_selectShampooBySize(sizeString);
         // _02_selectShampoosBySizeOrLabel(sizeString, labelId);
        // _03_selectShampoosByPrice(price);
-        _04_selectIngredientsByName(ingredientStartsWith);
+       // _04_selectIngredientsByName(ingredientStartsWith);
 
 
     }
@@ -60,6 +66,10 @@ public class Runner implements CommandLineRunner {
     }
     private void _04_selectIngredientsByName(String startsWith){
         List<Ingredient> ingredients = this.ingredientService.selectNameStartsWith(startsWith);
+        ingredients.forEach(System.out::println);
+    }
+    private void _05_selectIngredientsByNamesInAList(List<String> names){
+        List<Ingredient> ingredients = this.ingredientService.selectByNamesIn(names);
         ingredients.forEach(System.out::println);
     }
 }
