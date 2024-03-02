@@ -46,6 +46,14 @@ public class BookServiceImpl implements BookService {
                 .stream().map(Book::getTitle).collect(Collectors.toList());
     }
 
+    @Override
+    public List<Book> findAllByPriceLessThanAndPriceHigherThan(double lessThanPrice, double higherThanPrice) {
+        BigDecimal bigDecimalLessPrice = BigDecimal.valueOf(lessThanPrice);
+        BigDecimal bigDecimalHigherPrice = BigDecimal.valueOf(higherThanPrice);
+
+        return this.bookRepository.findAllByPriceLessThanOrPriceGreaterThan(bigDecimalLessPrice, bigDecimalHigherPrice);
+    }
+
 
     @Override
     public void seedBooks() throws IOException {

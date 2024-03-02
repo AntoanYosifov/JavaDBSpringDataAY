@@ -9,6 +9,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 @Component
@@ -35,10 +36,15 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
      //   printAllAuthorsAndNumberOfTheirBooks();
         //printALlBooksByAuthorNameOrderByReleaseDate("George", "Powell");
        // _01_printAllBookTitlesByAgeRestriction(ageRestriction);
-        _02_printTheTitlesOfGoldEditionBooks();
+      //  _02_printTheTitlesOfGoldEditionBooks();
+        _03_printTitlesAndPricesOfBooks();
 
 
 
+    }
+    private void _03_printTitlesAndPricesOfBooks(){
+        this.bookService.findAllByPriceLessThanAndPriceHigherThan(5, 40)
+                .forEach(b-> System.out.printf("%s - $%s\n", b.getTitle(), b.getPrice()));
     }
     private void _02_printTheTitlesOfGoldEditionBooks(){
         this.bookService.findAllTitlesByEditionTypeAndCopies(EditionType.GOLD, 5000)

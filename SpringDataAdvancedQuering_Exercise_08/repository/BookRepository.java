@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -22,5 +23,6 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "WHERE b.ageRestriction = :ageRestriction")
     List<String> findAllTitlesByAgeRestriction(AgeRestriction ageRestriction);
     List<Book> findByEditionTypeAndCopiesLessThan(EditionType type, int numCopies);
+    List<Book> findAllByPriceLessThanOrPriceGreaterThan(BigDecimal lessThanPrice, BigDecimal greaterThanPrice);
 
 }
