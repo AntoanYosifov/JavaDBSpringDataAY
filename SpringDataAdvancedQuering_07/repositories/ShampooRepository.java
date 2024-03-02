@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,8 @@ public interface ShampooRepository extends JpaRepository<Shampoo, Long> {
     List<Shampoo> findBySizeOrLabelIdOrderByPriceAsc(Size size, long labelId);
 
     List<Shampoo> findBySizeOrderById(Size size);
+    List<Shampoo> findByPriceGreaterThanOrderByPriceDesc(BigDecimal price);
+
     @Query("SELECT  s FROM Shampoo s " +
             "JOIN s.ingredients AS i " +
             "WHERE i.name IN :ingredientNames")
