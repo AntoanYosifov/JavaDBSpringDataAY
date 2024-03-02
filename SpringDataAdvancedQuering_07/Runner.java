@@ -1,8 +1,9 @@
 package com.example.advquerying;
 
+import com.example.advquerying.entities.Ingredient;
 import com.example.advquerying.entities.Shampoo;
 import com.example.advquerying.entities.Size;
-import com.example.advquerying.repositories.ShampooRepository;
+import com.example.advquerying.services.IngredientService;
 import com.example.advquerying.services.ShampooService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,26 +12,28 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Set;
 
 @Component
 public class Runner implements CommandLineRunner {
 
     private final ShampooService shampooService;
+    private final IngredientService ingredientService;
 
     @Autowired
-    public Runner(ShampooService shampooService) {
+    public Runner(ShampooService shampooService, IngredientService ingredientService) {
         this.shampooService = shampooService;
+        this.ingredientService = ingredientService;
     }
 
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        double price = Double.parseDouble(scanner.nextLine());
+        String ingredientStartsWith =scanner.nextLine();
 
         //_01_selectShampooBySize(sizeString);
         // _02_selectShampoosBySizeOrLabel(sizeString, labelId);
-        _03_selectShampoosByPrice(price);
+       // _03_selectShampoosByPrice(price);
+        _04_selectIngredientsByName(ingredientStartsWith);
 
 
     }
@@ -54,5 +57,9 @@ public class Runner implements CommandLineRunner {
 
         List<Shampoo> shampoos = this.shampooService.selectMoreExpensiveThan(bigDecimalPrice);
         shampoos.forEach(System.out::println);
+    }
+    private void _04_selectIngredientsByName(String startsWith){
+        List<Ingredient> ingredients = this.ingredientService.selectNameStartsWith(startsWith);
+        ingredients.forEach(System.out::println);
     }
 }

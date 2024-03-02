@@ -42,4 +42,10 @@ public class Ingredient extends BaseEntity {
     public void setShampoos(Set<Shampoo> shampoos) {
         this.shampoos = shampoos;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Ingredient: %s, price: %s\n",
+                this.getName(), this.getPrice().toString());
+    }
 }
