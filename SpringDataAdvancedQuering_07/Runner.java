@@ -29,17 +29,14 @@ public class Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-        List<String> ingredientNamesList = new ArrayList<>();
-        for (int i = 0; i < 3; i++) {
-            String ingredientName = scanner.nextLine();
-            ingredientNamesList.add(ingredientName);
-        }
-        _05_selectIngredientsByNamesInAList(ingredientNamesList);
-
+        double price = Double.parseDouble(scanner.nextLine());
         //_01_selectShampooBySize(sizeString);
         // _02_selectShampoosBySizeOrLabel(sizeString, labelId);
-       // _03_selectShampoosByPrice(price);
-       // _04_selectIngredientsByName(ingredientStartsWith);
+        // _03_selectShampoosByPrice(price);
+        // _04_selectIngredientsByName(ingredientStartsWith);
+//        _05_selectIngredientsByNamesInAList(ingredientNamesList);
+        _06_selectCountShampoosByPrice(price);
+
 
 
     }
@@ -71,5 +68,9 @@ public class Runner implements CommandLineRunner {
     private void _05_selectIngredientsByNamesInAList(List<String> names){
         List<Ingredient> ingredients = this.ingredientService.selectByNamesIn(names);
         ingredients.forEach(System.out::println);
+    }
+    private void _06_selectCountShampoosByPrice(double price){
+        int count = this.shampooService.selectCountByPriceLessThan(price);
+        System.out.println(count);
     }
 }

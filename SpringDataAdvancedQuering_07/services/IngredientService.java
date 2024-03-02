@@ -7,4 +7,5 @@ import java.util.List;
 public interface IngredientService {
     List<Ingredient> selectNameStartsWith(String startsWith);
     List<Ingredient> selectByNamesIn(List<String> names);
+
 }

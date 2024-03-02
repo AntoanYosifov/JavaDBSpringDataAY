@@ -10,4 +10,5 @@ public interface ShampooService {
     List<Shampoo> selectShampooBySize(Size size);
     List<Shampoo> selectBySizeOrLabelId(Size size, int labelId);
     List<Shampoo> selectMoreExpensiveThan(BigDecimal price);
+    int selectCountByPriceLessThan(double price);
 }
