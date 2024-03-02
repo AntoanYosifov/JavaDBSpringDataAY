@@ -26,8 +26,10 @@ public class Runner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String sizeString = scanner.nextLine();
+        int labelId = Integer.parseInt(scanner.nextLine());
 
-        _01_selectShampooBySize(sizeString);
+        //_01_selectShampooBySize(sizeString);
+        _02_selectShampoosBySizeOrLabel(sizeString, labelId);
 
 
     }
@@ -36,6 +38,12 @@ public class Runner implements CommandLineRunner {
         Size size = Size.valueOf(sizeString);
 
         List<Shampoo> shampoos = this.shampooService.selectShampooBySize(size);
+        shampoos.forEach(System.out::println);
+    }
+    private void _02_selectShampoosBySizeOrLabel(String sizeString, int labelId) {
+        Size size = Size.valueOf(sizeString);
+
+        List<Shampoo> shampoos = this.shampooService.selectBySizeOrLabelId(size, labelId);
         shampoos.forEach(System.out::println);
     }
 }

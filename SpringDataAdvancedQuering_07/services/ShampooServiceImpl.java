@@ -22,4 +22,9 @@ public class ShampooServiceImpl implements ShampooService {
     public List<Shampoo> selectShampooBySize(Size size) {
         return this.shampooRepository.findBySize(size);
     }
+
+    @Override
+    public List<Shampoo> selectBySizeOrLabelId(Size size, int labelId) {
+        return this.shampooRepository.findBySizeOrLabelIdOrderByPriceAsc(size, labelId);
+    }
 }
