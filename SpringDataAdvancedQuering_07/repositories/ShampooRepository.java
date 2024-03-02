@@ -15,6 +15,7 @@ import java.util.Set;
 public interface ShampooRepository extends JpaRepository<Shampoo, Long> {
     List<Shampoo> findAllByBrand(String brand);
     List<Shampoo> findAllByBrandAndSize(String brand, Size size);
+    List<Shampoo> findBySize(Size size);
 
     List<Shampoo> findBySizeOrderById(Size size);
     @Query("SELECT  s FROM Shampoo s " +
