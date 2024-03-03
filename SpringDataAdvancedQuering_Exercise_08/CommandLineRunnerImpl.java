@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 @Component
@@ -28,6 +29,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
+       String releaseDate = scanner.nextLine();
 
        // seedData();
 
@@ -37,10 +39,27 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //printALlBooksByAuthorNameOrderByReleaseDate("George", "Powell");
        // _01_printAllBookTitlesByAgeRestriction(ageRestriction);
       //  _02_printTheTitlesOfGoldEditionBooks();
-        _03_printTitlesAndPricesOfBooks();
+        //_03_printTitlesAndPricesOfBooks();
+       // _04_printTitlesNotReleasedBooks(year);
+        _05_printBooksReleaseBeforeDate(releaseDate);
 
 
+    }
+    private void _05_printBooksReleaseBeforeDate(String releaseDateString){
+        String[] dateTokens = releaseDateString.split("-");
+        int dayOfMonth = Integer.parseInt(dateTokens[0]);
+        int month = Integer.parseInt(dateTokens[1]);
+        int year = Integer.parseInt(dateTokens[2]);
 
+        LocalDate releaseDate = LocalDate.of(year, month, dayOfMonth);
+
+        this.bookService.findAllBooksReleasedBeforeYear(releaseDate)
+                .forEach(b-> System.out.printf("%s %s %s\n", b.getTitle(), b.getEditionType().name(),
+                        b.getPrice()));
+    }
+    private void _04_printTitlesNotReleasedBooks(String year){
+        this.bookService.findTitlesReleasedNotInYear(year)
+                .forEach(System.out::println);
     }
     private void _03_printTitlesAndPricesOfBooks(){
         this.bookService.findAllByPriceLessThanAndPriceHigherThan(5, 40)

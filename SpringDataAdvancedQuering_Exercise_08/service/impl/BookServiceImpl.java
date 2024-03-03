@@ -54,6 +54,18 @@ public class BookServiceImpl implements BookService {
         return this.bookRepository.findAllByPriceLessThanOrPriceGreaterThan(bigDecimalLessPrice, bigDecimalHigherPrice);
     }
 
+    @Override
+    public List<String> findTitlesReleasedNotInYear(String year) {
+        return this.bookRepository.findBookTitlesNotReleasedInAGivenYear(year);
+    }
+
+    @Override
+    public List<Book> findAllBooksReleasedBeforeYear(LocalDate releaseDate) {
+
+        return this.bookRepository.findAllByReleaseDateBefore(releaseDate);
+
+    }
+
 
     @Override
     public void seedBooks() throws IOException {

@@ -4,7 +4,7 @@ import com.example.springintro.model.entity.Book;
 import com.example.springintro.model.entity.EditionType;
 
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 public interface BookService {
@@ -21,5 +21,7 @@ public interface BookService {
     List<String> findAllTitlesByEditionTypeAndCopies(EditionType type, int copies);
 
     List<Book> findAllByPriceLessThanAndPriceHigherThan(double lessThanPrice, double higherThanPrice);
+    List<String> findTitlesReleasedNotInYear(String year);
+    List<Book> findAllBooksReleasedBeforeYear(LocalDate releasedDate);
 
 }

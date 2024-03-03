@@ -24,5 +24,9 @@ public interface BookRepository extends JpaRepository<Book, Long> {
     List<String> findAllTitlesByAgeRestriction(AgeRestriction ageRestriction);
     List<Book> findByEditionTypeAndCopiesLessThan(EditionType type, int numCopies);
     List<Book> findAllByPriceLessThanOrPriceGreaterThan(BigDecimal lessThanPrice, BigDecimal greaterThanPrice);
+    @Query("SELECT b.title FROM Book b " +
+            "WHERE YEAR(b.releaseDate)  <> :year")
+    List<String> findBookTitlesNotReleasedInAGivenYear(String year);
+
 
 }
