@@ -1,6 +1,7 @@
 package com.example.springintro.service.impl;
 
 import com.example.springintro.model.entity.Author;
+import com.example.springintro.model.entity.AuthorNameAndTotalCopies;
 import com.example.springintro.repository.AuthorRepository;
 import com.example.springintro.service.AuthorService;
 import org.springframework.stereotype.Service;
@@ -67,5 +68,10 @@ public class AuthorServiceImpl implements AuthorService {
         return this.authorRepository.findAllByFirstNameEndsWith(letter)
                 .stream().map(a-> a.getFirstName() + " " + a.getLastName())
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AuthorNameAndTotalCopies> getAllAuthorsBookCopiesOrderByNumberOfCopiesDesc() {
+        return this.authorRepository.getWithTotalCopies();
     }
 }

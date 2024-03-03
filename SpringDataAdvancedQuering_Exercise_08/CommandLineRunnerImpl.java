@@ -1,5 +1,6 @@
 package com.example.springintro;
 
+import com.example.springintro.model.entity.Author;
 import com.example.springintro.model.entity.Book;
 import com.example.springintro.model.entity.EditionType;
 import com.example.springintro.service.AuthorService;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Scanner;
 
 @Component
@@ -29,7 +31,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-       int length = Integer.parseInt(scanner.nextLine());
+      // int length = Integer.parseInt(scanner.nextLine());
 
        // seedData();
 
@@ -45,9 +47,16 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //_06_printAllAuthorsFirstNamesEndsWith(letter);
         //_07_printAllTitlesBooksContainingString(pattern);
        // _08_printAllTitlesWithAuthorFirstNameStartsWith(pattern);
-        _09_printCountBooksWithTitleLongerThan(length);
+        //_09_printCountBooksWithTitleLongerThan(length);
+        _10_printTotalBookCopiesByAuthor();
 
 
+
+    }
+    private void _10_printTotalBookCopiesByAuthor(){
+        this.authorService.getAllAuthorsBookCopiesOrderByNumberOfCopiesDesc()
+                .forEach(a-> System.out.printf("%s %s - %d\n",
+                        a.getFirstName(), a.getLastName(), a.getTotalCopies()));
 
     }
     private void _09_printCountBooksWithTitleLongerThan(int length){
