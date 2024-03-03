@@ -43,9 +43,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
        // _04_printTitlesNotReleasedBooks(year);
         //_05_printBooksReleaseBeforeDate(releaseDate);
         //_06_printAllAuthorsFirstNamesEndsWith(letter);
-        _07_printAllTitlesBooksContainingString(pattern);
+        //_07_printAllTitlesBooksContainingString(pattern);
+        _08_printAllTitlesWithAuthorFirstNameStartsWith(pattern);
 
 
+    }
+    private void _08_printAllTitlesWithAuthorFirstNameStartsWith(String pattern){
+        this.bookService.findTitlesByAuthorFirstNameStartsWith(pattern)
+                .forEach(System.out::println);
     }
     private void _07_printAllTitlesBooksContainingString(String pattern){
         this.bookService.findAllTitlesContainingAString(pattern)

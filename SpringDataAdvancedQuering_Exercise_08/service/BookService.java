@@ -24,5 +24,6 @@ public interface BookService {
     List<String> findTitlesReleasedNotInYear(String year);
     List<Book> findAllBooksReleasedBeforeYear(LocalDate releasedDate);
     List<String> findAllTitlesContainingAString(String pattern);
+    List<String> findTitlesByAuthorFirstNameStartsWith(String pattern);
 
 }

@@ -72,6 +72,12 @@ public class BookServiceImpl implements BookService {
                 .stream().map(Book::getTitle).collect(Collectors.toList());
     }
 
+    @Override
+    public List<String> findTitlesByAuthorFirstNameStartsWith(String pattern) {
+        return this.bookRepository.findByAuthorLastNameStartsWith(pattern)
+                .stream().map(Book::getTitle).collect(Collectors.toList());
+    }
+
 
     @Override
     public void seedBooks() throws IOException {
