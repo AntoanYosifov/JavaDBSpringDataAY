@@ -66,6 +66,12 @@ public class BookServiceImpl implements BookService {
 
     }
 
+    @Override
+    public List<String> findAllTitlesContainingAString(String pattern) {
+        return this.bookRepository.findByTitleContainingIgnoreCase(pattern)
+                .stream().map(Book::getTitle).collect(Collectors.toList());
+    }
+
 
     @Override
     public void seedBooks() throws IOException {

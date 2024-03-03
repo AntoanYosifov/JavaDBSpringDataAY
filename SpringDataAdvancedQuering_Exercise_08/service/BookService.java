@@ -23,5 +23,6 @@ public interface BookService {
     List<Book> findAllByPriceLessThanAndPriceHigherThan(double lessThanPrice, double higherThanPrice);
     List<String> findTitlesReleasedNotInYear(String year);
     List<Book> findAllBooksReleasedBeforeYear(LocalDate releasedDate);
+    List<String> findAllTitlesContainingAString(String pattern);
 
 }
