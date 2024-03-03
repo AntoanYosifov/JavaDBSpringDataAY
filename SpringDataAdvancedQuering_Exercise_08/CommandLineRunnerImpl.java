@@ -29,7 +29,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-       String releaseDate = scanner.nextLine();
+       String letter = scanner.nextLine();
 
        // seedData();
 
@@ -41,9 +41,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
       //  _02_printTheTitlesOfGoldEditionBooks();
         //_03_printTitlesAndPricesOfBooks();
        // _04_printTitlesNotReleasedBooks(year);
-        _05_printBooksReleaseBeforeDate(releaseDate);
+        //_05_printBooksReleaseBeforeDate(releaseDate);
+        _06_printAllAuthorsFirstNamesEndsWith(letter);
 
 
+    }
+    private void _06_printAllAuthorsFirstNamesEndsWith(String letter){
+        this.authorService.getAllFirstNamesEndWith(letter)
+                .forEach(System.out::println);
     }
     private void _05_printBooksReleaseBeforeDate(String releaseDateString){
         String[] dateTokens = releaseDateString.split("-");
