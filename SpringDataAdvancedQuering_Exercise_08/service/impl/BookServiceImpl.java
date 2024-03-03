@@ -78,6 +78,11 @@ public class BookServiceImpl implements BookService {
                 .stream().map(Book::getTitle).collect(Collectors.toList());
     }
 
+    @Override
+    public int findNumberOfBooksWithTitleLengthLongerThan(int length) {
+        return this.bookRepository.findCountByTitleLengthLongerThan(length);
+    }
+
 
     @Override
     public void seedBooks() throws IOException {

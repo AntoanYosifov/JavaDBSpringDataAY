@@ -29,7 +29,7 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Scanner scanner = new Scanner(System.in);
-       String pattern = scanner.nextLine();
+       int length = Integer.parseInt(scanner.nextLine());
 
        // seedData();
 
@@ -44,9 +44,14 @@ public class CommandLineRunnerImpl implements CommandLineRunner {
         //_05_printBooksReleaseBeforeDate(releaseDate);
         //_06_printAllAuthorsFirstNamesEndsWith(letter);
         //_07_printAllTitlesBooksContainingString(pattern);
-        _08_printAllTitlesWithAuthorFirstNameStartsWith(pattern);
+       // _08_printAllTitlesWithAuthorFirstNameStartsWith(pattern);
+        _09_printCountBooksWithTitleLongerThan(length);
 
 
+
+    }
+    private void _09_printCountBooksWithTitleLongerThan(int length){
+        System.out.println(this.bookService.findNumberOfBooksWithTitleLengthLongerThan(length));
     }
     private void _08_printAllTitlesWithAuthorFirstNameStartsWith(String pattern){
         this.bookService.findTitlesByAuthorFirstNameStartsWith(pattern)

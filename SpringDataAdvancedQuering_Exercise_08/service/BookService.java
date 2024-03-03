@@ -25,5 +25,6 @@ public interface BookService {
     List<Book> findAllBooksReleasedBeforeYear(LocalDate releasedDate);
     List<String> findAllTitlesContainingAString(String pattern);
     List<String> findTitlesByAuthorFirstNameStartsWith(String pattern);
+    int findNumberOfBooksWithTitleLengthLongerThan(int length);
 
 }
